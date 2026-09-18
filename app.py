@@ -63,14 +63,16 @@ def calculator():
                     result = "Error: Division by zero"
                     op_symbol = '÷'
             
-            if isinstance(result, (int, float)):
-                calc_record = f"{num1} {op_symbol} {num2} = {result}"
-                calculation_history.append(calc_record)
-                
+          if 'history' not in session:
+        session['history'] = []
+    
+    calculation_entry = f"{num1} {operation} {num2} = {result}"
+    session['history'].append(calculation_entry)
+    session.modified = True
         except ValueError:
             result = "Error: Invalid input"
             
-    return render_template('calculator.html', calculation_result=result)
+return render_template('calculator.html', result=result, history=session.get('history', []))
 
 @app.route('/formulas', methods=['GET', 'POST'])
 def formulas():
@@ -91,3 +93,4 @@ import os
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
+   
