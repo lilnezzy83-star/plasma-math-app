@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plasma Math Engine</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2b093f, #12011b, #43105a);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        nav {
+            width: 100%;
+            background: rgba(15, 2, 25, 0.9);
+            padding: 15px 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(186, 85, 211, 0.3);
+            box-shadow: 0 4px 20px rgba(138, 43, 226, 0.3);
+        }
+        nav a {
+            color: #d8bfd8;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 650;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        nav a:hover { 
+            color: #00ffff; 
+            text-shadow: 0 0 10px #00ffff;
+        }
+        .container {
+            margin-top: 50px;
+            width: 90%;
+            max-width: 500px;
+            background: rgba(30, 10, 45, 0.85);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 rgba(138, 43, 226, 0.5);
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            text-align: center;
+        }
+        h2 { color: #e0b0ff; text-shadow: 0 0 8px rgba(224, 176, 255, 0.5); }
+        input, select {
+            padding: 12px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid rgba(186, 85, 211, 0.4);
+            background: #2d1242;
+            color: white;
+            font-size: 1rem;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #00ffff;
+            box-shadow: 0 0 10px #00ffff;
+        }
+        button {
+            padding: 12px 25px;
+            background-color: #8a2be2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.8);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+        button:hover { 
+            background-color: #9932cc; 
+            box-shadow: 0 0 25px #00ffff;
+        }
+        .result { 
+            margin-top: 25px; 
+            font-size: 1.5rem; 
+            color: #00ffcc; 
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/calculator">Math Engine</a>
+        <a href="/formulas">World Formulas</a>
+        <a href="/profile">Profile & History</a>
+    </nav>
+
+    <div class="container">
+        <h2>Interactive Math Calculator</h2>
+        <form method="POST">
+            <input type="number" step="any" name="num1" placeholder="First Number" required>
+            <select name="operation">
+                <option value="add">+</option>
+                <option value="subtract">-</option>
+                <option value="multiply">×</option>
+                <option value="divide">÷</option>
+            </select>
+            <input type="number" step="any" name="num2" placeholder="Second Number" required>
+            <br>
+            <button type="submit">Calculate</button>
+        </form>
+
+        {% if calculation_result is not none %}
+            <div class="result">Result: {{ calculation_result }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>

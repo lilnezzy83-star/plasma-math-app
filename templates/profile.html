@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile & Docs</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2b093f, #12011b, #43105a);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        nav {
+            width: 100%;
+            background: rgba(15, 2, 25, 0.9);
+            padding: 15px 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(186, 85, 211, 0.3);
+            box-shadow: 0 4px 20px rgba(138, 43, 226, 0.3);
+        }
+        nav a {
+            color: #d8bfd8;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 650;
+            transition: color 0.3s;
+        }
+        nav a:hover { color: #00ffff; text-shadow: 0 0 10px #00ffff; }
+        .container {
+            margin-top: 30px;
+            width: 90%;
+            max-width: 600px;
+            background: rgba(30, 10, 45, 0.85);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 rgba(138, 43, 226, 0.5);
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            margin-bottom: 40px;
+        }
+        h2 { color: #e0b0ff; border-bottom: 1px solid rgba(216, 112, 147, 0.3); padding-bottom: 8px; }
+        ul { padding-left: 20px; color: #d8bfd8; }
+        li { margin: 6px 0; }
+        p { color: #d8bfd8; line-height: 1.5; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/calculator">Math Engine</a>
+        <a href="/formulas">World Formulas</a>
+        <a href="/profile">Profile & History</a>
+    </nav>
+
+    <div class="container">
+        <h2>User Profile</h2>
+        <p><strong>Logged in user:</strong> {{ username }}</p>
+
+        <h2>Calculation History</h2>
+        {% if history %}
+            <ul>
+                {% for item in history %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No calculations performed yet. Head over to the Math Engine to try some!</p>
+        {% endif %}
+
+        <h2>Documentation & Policies</h2>
+        <p><strong>Documentation:</strong> This web application uses Python and Flask to route requests securely, handling dynamic backend math calculations and rendering them via custom Jinja templates.</p>
+        <p><strong>Policies:</strong> All session information is stored temporarily while the server runs. User inputs are sanitized to ensure precise arithmetic processing.</p>
+    </div>
+</body>
+</html>
